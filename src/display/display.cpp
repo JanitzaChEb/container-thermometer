@@ -1,6 +1,7 @@
 #include "display.h"
 #include <Adafruit_GFX.h>
 #include "../dht/dht.h"
+#include "images/temperature.h"
 
 #define SWITCH_INTERVAL_S 10
 
@@ -21,6 +22,8 @@ namespace Display
     }
 
     void displayTemperature() {
+        display.drawBitmap(0, 0, bitmap_temperature, 128, 64, 1);
+
         display.setTextSize(2);
         display.setTextColor(WHITE);
         display.setCursor(5, 5);
