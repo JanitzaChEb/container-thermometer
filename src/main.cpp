@@ -4,11 +4,14 @@
 #include <Wire.h>
 #include "display/display.h"
 #include "./dht/dht.h"
+#include "./wifi/wifi.h"
 
 void setup()
 {
+  Serial.begin(9600);
   Display::init();
   Dht::init();
+  Wifi::connect(10000);
 }
 
 void loop()
