@@ -26,6 +26,11 @@ namespace Display
         display.setCursor(5, 5);
         display.print(Dht::temperature);
         display.print(" C");
+        
+        // fake °
+        display.setCursor(70, 3);
+        display.setTextSize(1);
+        display.print("o");
     }
 
     void displayHumidity() {
