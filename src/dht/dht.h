@@ -8,6 +8,12 @@ namespace Dht
     extern float temperature;
     extern float humidity;
 
+    extern float temperature_min;
+    extern float humidity_min;
+
+    extern float temperature_max;
+    extern float humidity_max;
+
     void init();
     void read();
 }

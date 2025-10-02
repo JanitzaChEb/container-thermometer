@@ -11,7 +11,7 @@ namespace Display
 
     Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-    State state = TEMPERATURE;
+    int state = TEMPERATURE;
     int updatesSinceStateSwitch = 0;
 
     void init()
@@ -47,6 +47,21 @@ namespace Display
         display.print(" %");
     }
 
+    void displayStatistics() {
+        display.setTextSize(1);
+        display.setTextColor(WHITE);
+        display.setCursor(0, 0);
+        display.print("min/max values since last reboot:\n");
+        display.print(Dht::humidity_min);
+        display.print("% - ");
+        display.print(Dht::humidity_max);
+        display.print("%\n");
+        display.print(Dht::temperature_min);
+        display.print("C - ");
+        display.print(Dht::temperature_max);
+        display.print("C\n");
+    }
+
     void update()
     {
         display.clearDisplay();
@@ -58,6 +73,9 @@ namespace Display
             case HUMIDITY:
                 displayHumidity();
                 break;
+            case STATISTICS:
+                displayStatistics();
+                break;
             default:
                 break;
             }
@@ -65,7 +83,10 @@ namespace Display
 
         updatesSinceStateSwitch ++;
         if(updatesSinceStateSwitch > SWITCH_INTERVAL_S) {
-            state = state == TEMPERATURE ? HUMIDITY : TEMPERATURE;
+            state++;
+            if(state > 2) {
+                state = 0;
+            }
             updatesSinceStateSwitch = 0;
         }
     }

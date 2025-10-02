@@ -12,11 +12,12 @@ namespace Display
     enum State
     {
         TEMPERATURE = 0,
-        HUMIDITY = 1
+        HUMIDITY = 1,
+        STATISTICS = 2
     };
 
     extern Adafruit_SSD1306 display;
-    extern State state;
+    extern int state;
 
     void init();
     void update();
