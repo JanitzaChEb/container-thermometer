@@ -3,16 +3,14 @@
 #include "esp_wifi.h"
 #include "esp_wpa2.h"
 #include <string.h>
-
-const char* ssid = "**";
-const char* password = "**";
+#include "../secrets.h"
 
 namespace Wifi
 {
 
     void connect(int timeout_ms)
     {
-        WiFi.begin(ssid, password);
+        WiFi.begin(Secrets::ssid, Secrets::password);
 
         Serial.print("connecting...");
         const int start = millis();

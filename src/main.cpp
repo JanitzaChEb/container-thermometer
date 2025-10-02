@@ -5,6 +5,7 @@
 #include "display/display.h"
 #include "./dht/dht.h"
 #include "./wifi/wifi.h"
+#include "./firebase/firebase.h"
 
 void setup()
 {
@@ -12,6 +13,7 @@ void setup()
   Display::init();
   Dht::init();
   Wifi::connect(10000);
+  // DB::init();
 }
 
 void loop()
@@ -19,4 +21,5 @@ void loop()
   Display::update();
   Dht::read();
   delay(1000);
+  // DB::writeMeasurements();
 }
